@@ -17,3 +17,22 @@
   .table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  /* Aggiungi al tuo file CSS */
+.preview-image {
+  position: fixed;
+  display: none;
+  z-index: 9999;
+}
+
+.product-image:hover + .preview-image {
+  display: block;
+}
+
+.preview-img {
+  max-width: 200px;
+  max-height: 200px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

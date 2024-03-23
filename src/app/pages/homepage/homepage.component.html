@@ -1,19 +1,35 @@
-<p>homepage works!</p>
 <table class="table">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Body</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ data?.userId }}</td>
-        <td>{{ data?.id }}</td>
-        <td>{{ data?.title }}</td>
-        <td>{{ data?.body }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrizione</th>
+      <th>Prezzo</th>
+      <th>Quantità</th>
+      <th>Categoria</th>
+      <th>Immagine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prodotto of prodotti">
+      <td>{{ prodotto.nome }}</td>
+      <td>{{ prodotto.descrizione }}</td>
+      <td>{{ prodotto.prezzo }}</td>
+      <td>{{ prodotto.quantita }}</td>
+      <td>{{ prodotto.categoria }}</td>
+      <td>
+        <div class="image-container">
+          <img [src]="prodotto.immagine" 
+               alt="Immagine prodotto" 
+               height="50"
+               class="product-image"
+               (mouseenter)="showPreviewImage(prodotto.immagine, $event)"
+               (mouseleave)="hidePreviewImage()">
+          <div class="preview-image" *ngIf="showPreview && hoveredImageUrl === prodotto.immagine" [ngStyle]="getPreviewImageStyle()">
+            <img [src]="prodotto.immagine" alt="Anteprima immagine" class="preview-img">
+            <!-- <ngx-img-magnifier [imgSrc]="prodotto.immagine"></ngx-img-magnifier> -->
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

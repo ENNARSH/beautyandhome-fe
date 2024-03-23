@@ -7,18 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    ContactsComponent
+    ContactsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
