@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Prodotto } from 'src/app/model/prodotto';
 
+
 interface PreviewImageStyle {
   left?: string;
   top?: string;
@@ -78,4 +79,18 @@ export class HomepageComponent implements OnInit {
   
     return previewImageStyle;
   }
+
+  searchProducts(searchTerm: string): void {
+    if (searchTerm.trim() !== '') {
+      // Effettua la ricerca solo se il termine di ricerca non è vuoto
+      this.prodotti = this.prodotti.filter(prodotto =>
+        prodotto.nome.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      // Se il termine di ricerca è vuoto, ripristina la lista completa dei prodotti
+      this.getProdotti();
+    }
+  }
+  
+  
 }
