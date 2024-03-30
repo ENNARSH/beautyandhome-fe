@@ -3,6 +3,18 @@
 
 
 
+<div class="filters">
+  <h3>Filtra per categoria</h3>
+  <div class="filter-item">
+    <input type="checkbox" id="fragranzeMaschili" name="fragranzeMaschili" (change)="toggleCategoryFilter('fragranze maschili')" />
+    <label for="fragranzeMaschili">Fragranze Maschili</label>
+  </div>
+  <div class="filter-item">
+    <input type="checkbox" id="fragranzeFemminili" name="fragranzeFemminili" (change)="toggleCategoryFilter('fragranze femminili')" />
+    <label for="fragranzeFemminili">Fragranze Femminili</label>
+  </div>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -15,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let prodotto of prodotti">
+    <tr *ngFor="let prodotto of prodotti"  (click)=onProductSelected(prodotto.id)>  
       <td>{{ prodotto.nome }}</td>
       <td>{{ prodotto.descrizione }}</td>
       <td>{{ prodotto.prezzo }}</td>
@@ -38,3 +50,4 @@
     </tr>
   </tbody>
 </table>
+
