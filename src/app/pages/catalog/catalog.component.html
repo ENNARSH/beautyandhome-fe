@@ -6,11 +6,11 @@
 <div class="filters">
   <h3>Filtra per categoria</h3>
   <div class="filter-item">
-    <input type="checkbox" id="fragranzeMaschili" name="fragranzeMaschili" (change)="toggleCategoryFilter('fragranze maschili')" />
+    <input type="checkbox" id="fragranzeMaschili" name="fragranzeMaschili" (change)="onFragranzeMaschiliChange($event)" />
     <label for="fragranzeMaschili">Fragranze Maschili</label>
   </div>
   <div class="filter-item">
-    <input type="checkbox" id="fragranzeFemminili" name="fragranzeFemminili" (change)="toggleCategoryFilter('fragranze femminili')" />
+    <input type="checkbox" id="fragranzeFemminili" name="fragranzeFemminili" (change)="onFragranzeFemminiliChange($event)" />
     <label for="fragranzeFemminili">Fragranze Femminili</label>
   </div>
 </div>

@@ -22,27 +22,35 @@ export class CatalogComponent implements OnInit {
   mouseY = 0;
   selectedCategories: string[] = [];
 
+  fragranzeMaschiliChecked: boolean = false;
+  fragranzeFemminiliChecked: boolean = false;
+
   constructor(private http: HttpClient, private router: Router) { }
 
 
   ngOnInit(): void {
-    this.getProdottiFiltered('Fragranze maschili');
+    this.getProdottiFiltered();
   }
 
-  getProdotti() {
-    this.http.get<Prodotto[]>('http://localhost:8080/api/prodotti').subscribe(
-      (response) => {
-        console.log(response);
-        this.prodotti = response;
-        console.log(this.prodotti);
-      },
-      (error) => {
-        console.error('Errore durante il recupero dei prodotti:', error);
+  getProdottiFiltered() {
+    let categorie = [];
+    let categoria = '';
+    if(this.fragranzeMaschiliChecked || (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked)){
+      categorie.push('Fragranze maschili');
+    }
+    if(this.fragranzeFemminiliChecked || (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked)){
+      categorie.push('Fragranze femminili');
+    }
+
+    categorie.forEach((element, index) => {
+      if(index == 0){
+        categoria = categoria.concat(element);
+      } else {
+        categoria = categoria.concat(','+element);
       }
-    );
-  }
+    });
 
-  getProdottiFiltered(categoria: string) {
+
     const url = `http://localhost:8080/api/prodotti/filtered?categoria=${categoria}`;
   
     this.http.get<Prodotto[]>(url).subscribe(
@@ -57,23 +65,18 @@ export class CatalogComponent implements OnInit {
     );
   }
 
-  toggleCategoryFilter(category: string) {
-    if (this.selectedCategories.includes(category)) {
-      this.selectedCategories = this.selectedCategories.filter(c => c !== category);
-    } else {
-      this.selectedCategories.push(category);
+    onFragranzeMaschiliChange(event: any) {
+      this.fragranzeMaschiliChecked = event.target.checked;
+      this.getProdottiFiltered();
+      // Use this.fragranzeMaschiliChecked to perform actions based on the checkbox state
     }
-
-    // Chiamata alla funzione per filtrare i prodotti
-    this.filterProducts();
-  }
-
-  filterProducts() {
-    // Implementa qui la logica per filtrare i prodotti in base alle categorie selezionate
-    // Puoi utilizzare un servizio per recuperare i prodotti filtrati dal backend
-    // Oppure puoi filtrare direttamente l'array `prodotti` presente nel componente
-    // Assicurati di considerare sia le categorie selezionate che eventuali altri filtri applicati
-  }
+    
+    onFragranzeFemminiliChange(event: any) {
+      this.fragranzeFemminiliChecked = event.target.checked;
+      this.getProdottiFiltered();
+      // Use this.fragranzeFemminiliChecked to perform actions based on the checkbox state
+    }
+    
 
   showPreviewImage(imageUrl: string, event: MouseEvent): void {
     this.showPreview = true;
@@ -123,7 +126,7 @@ export class CatalogComponent implements OnInit {
       );
     } else {
       // Se il termine di ricerca è vuoto, ripristina la lista completa dei prodotti
-      this.getProdotti();
+      this.getProdottiFiltered();
     }
   }
 
