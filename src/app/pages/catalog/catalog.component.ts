@@ -16,6 +16,7 @@ interface PreviewImageStyle {
 export class CatalogComponent implements OnInit {
 
   prodotti: Prodotto[] = [];
+  prodottiNotFiltered: Prodotto[] = [];
   showPreview = false;
   hoveredImageUrl = '';
   mouseX = 0;
@@ -56,6 +57,7 @@ export class CatalogComponent implements OnInit {
     this.http.get<Prodotto[]>(url).subscribe(
       (response) => {
         console.log(response);
+        this.prodottiNotFiltered = response
         this.prodotti = response;
         console.log(this.prodotti);
       },
@@ -121,7 +123,7 @@ export class CatalogComponent implements OnInit {
   searchProducts(searchTerm: string): void {
     if (searchTerm.trim() !== '') {
       // Effettua la ricerca solo se il termine di ricerca non è vuoto
-      this.prodotti = this.prodotti.filter(prodotto =>
+      this.prodotti = this.prodottiNotFiltered.filter(prodotto =>
         prodotto.nome.toLowerCase().includes(searchTerm.toLowerCase())
       );
     } else {

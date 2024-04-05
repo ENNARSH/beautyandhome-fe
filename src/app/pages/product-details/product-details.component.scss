@@ -1,0 +1,17 @@
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.image-gallery {
+  flex: 1;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.price {
+  font-weight: bold;
+}
