@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -36,6 +36,7 @@ export class CatalogComponent implements OnInit {
   }
 
   getProdottiFiltered() {
+    const headers = new HttpHeaders().set('ngrok-skip-browser-warning', 'true');
     let categorie = [];
     let categoria = '';
     if(this.fragranzeMaschiliChecked || (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked)){
@@ -56,7 +57,7 @@ export class CatalogComponent implements OnInit {
 
     const url = `${environment.apiUrl}/api/prodotti/filtered?categoria=${categoria}`;
   
-    this.http.get<Prodotto[]>(url).pipe(
+    this.http.get<Prodotto[]>(url, {headers}).pipe(
       map(response => response as Prodotto[]) // Aggiungi map per convertire la risposta in formato JSON
     ).subscribe(
       (response) => {
