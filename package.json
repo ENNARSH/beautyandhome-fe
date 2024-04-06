@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "git checkout main && git pull & ng build --configuration=production --base-href='' && git add . && git commit -m 'release' && git push"
+    "deploy": "git checkout main && git pull & ng build --configuration=production --base-href='' && git add . && git commit -m 'release' && git push && cmd / k"
   },
   "private": true,
   "dependencies": {
