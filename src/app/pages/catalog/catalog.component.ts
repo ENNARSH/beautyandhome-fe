@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 import { Prodotto } from 'src/app/model/prodotto';
 import { environment } from 'src/environments/environment';
 
@@ -55,7 +56,9 @@ export class CatalogComponent implements OnInit {
 
     const url = `${environment.apiUrl}/api/prodotti/filtered?categoria=${categoria}`;
   
-    this.http.get<Prodotto[]>(url).subscribe(
+    this.http.get<Prodotto[]>(url).pipe(
+      map(response => response as Prodotto[]) // Aggiungi map per convertire la risposta in formato JSON
+    ).subscribe(
       (response) => {
         console.log(response);
         this.prodottiNotFiltered = response

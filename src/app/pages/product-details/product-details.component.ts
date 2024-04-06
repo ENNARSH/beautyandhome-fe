@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Prodotto } from 'src/app/model/prodotto';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
@@ -28,7 +29,9 @@ export class ProductDetailsComponent implements OnInit {
   getProdottoById(): void {
     const url = `${environment.apiUrl}/api/prodotti/details?id=${this.productId}`;
   
-    this.http.get<Prodotto[]>(url).subscribe(
+    this.http.get<Prodotto[]>(url).pipe(
+      map(response => response as Prodotto[]) // Aggiungi map per convertire la risposta in formato JSON
+    ).subscribe(
       (response) => {
         console.log(response);
         this.product = response[0];
@@ -41,8 +44,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductById(productId: string): void {
-    this.http.get<Prodotto>(`${this.apiUrl}/${productId}`)
-      .subscribe(product => {
+    this.http.get<Prodotto>(`${this.apiUrl}/${productId}`).pipe(
+      map(response => response as Prodotto) // Aggiungi map per convertire la risposta in formato JSON
+    ).subscribe(product => {
         this.product = product;
       });
   }
