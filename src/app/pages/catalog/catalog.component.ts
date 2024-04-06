@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Prodotto } from 'src/app/model/prodotto';
+import { environment } from 'src/environments/environment';
 
 interface PreviewImageStyle {
   left?: string;
@@ -52,7 +53,7 @@ export class CatalogComponent implements OnInit {
     });
 
 
-    const url = `http://localhost:8080/api/prodotti/filtered?categoria=${categoria}`;
+    const url = `${environment.apiUrl}/api/prodotti/filtered?categoria=${categoria}`;
   
     this.http.get<Prodotto[]>(url).subscribe(
       (response) => {

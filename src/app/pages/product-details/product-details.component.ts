@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Prodotto } from 'src/app/model/prodotto';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-details',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  apiUrl = 'http://localhost:8080/api/prodotti'; // Modifica con l'URL effettivo della tua API
+  apiUrl = `${environment.apiUrl}/api/prodotti`; // Modifica con l'URL effettivo della tua API
   productId: string | undefined;
   product: Prodotto | null = null;
 
@@ -25,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
     ;
   }
   getProdottoById(): void {
-    const url = `http://localhost:8080/api/prodotti/details?id=${this.productId}`;
+    const url = `${environment.apiUrl}/api/prodotti/details?id=${this.productId}`;
   
     this.http.get<Prodotto[]>(url).subscribe(
       (response) => {
