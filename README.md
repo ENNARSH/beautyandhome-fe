@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `https://f9ff-176-245-134-127.ngrok-free.app`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `https://2f41-176-245-134-127.ngrok-free.app`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
