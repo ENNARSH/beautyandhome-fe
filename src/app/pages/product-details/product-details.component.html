@@ -1,20 +1,26 @@
 <div class="product-details">
-
   <div class="product-image-container">
-    <img [src]="product?.immagine" alt="Immagine Prodotto" class="product-image">
+    <img
+      width="300px"
+      height="300px"
+      [src]="product.immagine"
+      alt="Immagine Prodotto"
+      class="product-image"
+    />
   </div>
 
   <div class="product-info">
     <h2>Dettagli Prodotto</h2>
-    <h3>{{ product?.nome }}</h3>
-    <p>{{ product?.descrizione }}</p>
-    <p>Categoria: {{ product?.categoria }}</p>
-    <p>Prezzo: {{ product?.prezzo }}</p>
-    <p>Quantità: {{ product?.quantita }}</p>
-  </div>
-
-  <div class="actions">
-    <button type="button" class="btn btn-primary" (click)="addToCart()">Aggiungi al carrello</button>
-    <button type="button" class="btn btn-secondary">Acquista</button>
+    <h3>{{ product.nome }}</h3>
+    <p>{{ product.descrizione }}</p>
+    <p>Categoria: {{ product.categoria }}</p>
+    <p>Prezzo: {{ product.prezzo }}</p>
+    <p>Quantità: {{ product.quantita }}</p>
+    <div class="buttons">
+      <div class="button" (click)="addToCart(product)">
+        Aggiungi al carrello
+      </div>
+      <div class="button">Acquista ora</div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,37 @@
+<div class="cart purple">
+  <!-- Carrello vuoto -->
+  <ng-container *ngIf="!cart.length">
+    <div class="title white">
+      Il tuo carrello Beauty and Home è vuoto! Vai subito a shoppare!
+    </div>
+  </ng-container>
+
+  <!-- Carrello pieno -->
+  <ng-container *ngIf="cart.length">
+    <div class="products-container white">
+      <div class="title mb-30">Carrello</div>
+
+      <!-- lista prodotti -->
+      <ng-container *ngFor="let prodotto of cart; last as last">
+        <div class="product-card" [ngClass]="{ 'border-bottom': last }">
+          <img
+            class="image"
+            width="200px"
+            height="200px"
+            src="{{ prodotto.immagine }}"
+          />
+          <div class="product-details">
+            <div class="title-big">{{ prodotto.nome }}</div>
+            <div class="title-medium">{{ prodotto.descrizione }}</div>
+            <div class="title-medium bold">{{ prodotto.prezzo }} €</div>
+            <div class="title-medium">{{ prodotto.quantita }} ml</div>
+            <div class="bottom-bar">
+              <div class="">Quantità: {{ prodotto.quantitaInCarrello }}</div>
+              <div class="link" (click)="removeProduct(prodotto)">Rimuovi</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

@@ -1,12 +1,16 @@
 <div class="container">
-  <img src="https://i.postimg.cc/d0NpWF1Y/logo.jpg">
-  <div class="links">
-    <div class="link" (click)="redirect('/catalog')">
-      Catalogo
+  <img class="main-icon" src="https://i.postimg.cc/d0NpWF1Y/logo.jpg" />
+  <div class="navbar-items">
+    <div class="links">
+      <div class="link" (click)="redirect('/catalog')">Catalogo</div>
+      <div class="link" (click)="redirect('/contacts')">Contatti</div>
     </div>
-    <div class="link" (click)="redirect('/contacts')">
-      Contatti
+    <div class="cart">
+      <img
+        src="https://i.postimg.cc/d0NpWF1Y/logo.jpg"
+        (click)="redirect('/cart')"
+      />
     </div>
   </div>
-  <div></div>
+  <img src="https://i.postimg.cc/d0NpWF1Y/logo.jpg" />
 </div>

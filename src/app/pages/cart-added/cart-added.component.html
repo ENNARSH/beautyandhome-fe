@@ -1,0 +1,24 @@
+<div class="cart-added purple">
+  <div class="card white">
+    <div class="title">{{ lastItemCartAdded.nome }} aggiunto al carrello!</div>
+    <div class="product-card">
+      <img
+        class="image"
+        width="200px"
+        height="200px"
+        src="{{ lastItemCartAdded.immagine }}"
+      />
+      <div class="product-details">
+        <div class="title-medium">{{ lastItemCartAdded.descrizione }}</div>
+        <div class="title-medium bold">{{ lastItemCartAdded.prezzo }} €</div>
+        <div class="title-medium">{{ lastItemCartAdded.quantita }} ml</div>
+        <div class="buttons">
+          <div class="button" (click)="redirect('/cart')">Vai al carrello</div>
+          <div class="button" (click)="redirect('/catalog')">
+            Torna al catalogo
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

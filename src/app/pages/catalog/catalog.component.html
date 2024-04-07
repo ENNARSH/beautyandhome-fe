@@ -4,11 +4,21 @@
     <div class="filters">
       <h3>Filtra per categoria</h3>
       <div class="filter-item">
-        <input type="checkbox" id="fragranzeMaschili" name="fragranzeMaschili" (change)="onFragranzeMaschiliChange($event)" />
+        <input
+          type="checkbox"
+          id="fragranzeMaschili"
+          name="fragranzeMaschili"
+          (change)="onFragranzeMaschiliChange($event)"
+        />
         <label for="fragranzeMaschili">Fragranze Maschili</label>
       </div>
       <div class="filter-item">
-        <input type="checkbox" id="fragranzeFemminili" name="fragranzeFemminili" (change)="onFragranzeFemminiliChange($event)" />
+        <input
+          type="checkbox"
+          id="fragranzeFemminili"
+          name="fragranzeFemminili"
+          (change)="onFragranzeFemminiliChange($event)"
+        />
         <label for="fragranzeFemminili">Fragranze Femminili</label>
       </div>
     </div>
@@ -26,7 +36,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let prodotto of prodotti"  (click)=onProductSelected(prodotto.id) class="cursor-pointer">  
+        <tr
+          *ngFor="let prodotto of prodotti"
+          (click)="
+            prodotto.id !== undefined ? onProductSelected(prodotto.id) : null
+          "
+          class="cursor-pointer"
+        >
           <td>{{ prodotto.nome }}</td>
           <td>{{ prodotto.descrizione }}</td>
           <td>{{ prodotto.prezzo }}</td>
@@ -34,21 +50,34 @@
           <td>{{ prodotto.categoria }}</td>
           <td>
             <div class="image-container">
-              <img [src]="prodotto.immagine" 
-                   alt="Immagine prodotto" 
-                   height="50"
-                   class="product-image"
-                   (mouseenter)="showPreviewImage(prodotto.immagine, $event)"
-                   (mouseleave)="hidePreviewImage()">
-              <div class="preview-image" *ngIf="showPreview && hoveredImageUrl === prodotto.immagine" [ngStyle]="getPreviewImageStyle()">
-                <img [src]="prodotto.immagine" alt="Anteprima immagine" class="preview-img">
+              <img
+                [src]="prodotto.immagine"
+                alt="Immagine prodotto"
+                height="50"
+                class="product-image"
+                (mouseenter)="
+                  prodotto.immagine
+                    ? showPreviewImage(prodotto.immagine, $event)
+                    : null
+                "
+                (mouseleave)="hidePreviewImage()"
+              />
+              <div
+                class="preview-image"
+                *ngIf="showPreview && hoveredImageUrl === prodotto.immagine"
+                [ngStyle]="getPreviewImageStyle()"
+              >
+                <img
+                  [src]="prodotto.immagine"
+                  alt="Anteprima immagine"
+                  class="preview-img"
+                />
                 <!-- <ngx-img-magnifier [imgSrc]="prodotto.immagine"></ngx-img-magnifier> -->
               </div>
             </div>
           </td>
         </tr>
       </tbody>
-    </table> 
+    </table>
   </div>
 </div>
-

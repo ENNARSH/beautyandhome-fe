@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { NgrokInterceptor } from './service/NgrockInterceptor.service';
+import { CartComponent } from './pages/cart/cart.component';
+import { CartAddedComponent } from './pages/cart-added/cart-added.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NgrokInterceptor } from './service/NgrockInterceptor.service';
     NavbarComponent,
     LoginComponent,
     SearchBarComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent,
+    CartAddedComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +39,9 @@ import { NgrokInterceptor } from './service/NgrockInterceptor.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: NgrokInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
