@@ -1,14 +1,22 @@
 <!doctype html>
-<html>
-  <head>
-    <!-- This stores the URL the user was attempting to go to in sessionStorage,
-    and then redirects all 404 responses to the app’s index.html page -->
-    <!-- See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/ -->
-    <script>
-      sessionStorage.redirect = location.href;
-    </script>
-    <meta http-equiv="refresh" content="0;url=https://ennarsh.github.io/beautyandhome-fe" />
-  </head>
-  <body>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Beautyandhomefe</title>
+  <script>
+    // Redirect all 404 errors to the root URL
+    if (window.location.pathname !== '/' && !window.location.pathname.startsWith('/_')) {
+      window.location.href = '/';
+    }
+  </script>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+</body>
 </html>
