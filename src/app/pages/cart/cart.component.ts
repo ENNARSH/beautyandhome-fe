@@ -3,7 +3,6 @@ import { OrdineCompleto, OrdineProdotto, Prodotto } from 'src/app/model/models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Ordine } from 'src/app/model/models';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class CartComponent implements OnInit {
 
   isCartFormValid: boolean = false;
+  isCheckedOut: boolean = false;
   
   cart: Prodotto[] = [];
   selectedPaymentMethod: string | undefined;
@@ -117,6 +117,7 @@ export class CartComponent implements OnInit {
           // Rimuovi i prodotti dal carrello dopo aver completato l'ordine
           this.cart = [];
           sessionStorage.removeItem('cartItems');
+          this.isCheckedOut = true;
         }
       );
     }
