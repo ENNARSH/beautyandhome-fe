@@ -15,6 +15,7 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { NgrokInterceptor } from './service/NgrockInterceptor.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartAddedComponent } from './pages/cart-added/cart-added.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CartAddedComponent } from './pages/cart-added/cart-added.component';
     ProductDetailsComponent,
     CartComponent,
     CartAddedComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

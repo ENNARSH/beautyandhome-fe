@@ -24,14 +24,61 @@
             <div class="title-big">{{ prodotto.nome }}</div>
             <div class="title-medium">{{ prodotto.descrizione }}</div>
             <div class="title-medium bold">{{ prodotto.prezzo }} €</div>
-            <div class="title-medium">{{ prodotto.quantita }} ml</div>
+            <div class="title-medium">{{ prodotto.ml }} ml</div>
             <div class="bottom-bar">
               <div class="">Quantità: {{ prodotto.quantitaInCarrello }}</div>
               <div class="link" (click)="removeProduct(prodotto)">Rimuovi</div>
             </div>
           </div>
         </div>
+        <div class="total-price" *ngIf="last">
+          Prezzo totale: {{ getTotalPrice() }} €
+        </div>
       </ng-container>
     </div>
   </ng-container>
 </div>
+ <!-- Selezione metodo di pagamento -->
+ <div class="payment-method">
+  <label>Seleziona il metodo di pagamento:</label>
+  <select [(ngModel)]="selectedPaymentMethod">
+    <option value="contrassegno">Contrassegno</option>
+    <option value="carta">Pagamento con carta</option>
+    <option value="paypal">PayPal</option>
+  </select>
+</div>
+
+<!-- Form di pagamento -->
+<div class="payment-form" *ngIf="selectedPaymentMethod">
+<!-- Form di pagamento -->
+<div class="payment-form" *ngIf="selectedPaymentMethod">
+  <form *ngIf="selectedPaymentMethod === 'contrassegno'">
+    <label>Nome</label>
+    <input type="text" [(ngModel)]="paymentForm.nome" required [ngModelOptions]="{standalone: true}">
+    <label>Cognome</label>
+    <input type="text" [(ngModel)]="paymentForm.cognome" required [ngModelOptions]="{standalone: true}">
+    <label>Indirizzo</label>
+    <input type="text" [(ngModel)]="paymentForm.via" required [ngModelOptions]="{standalone: true}">
+    <label>CAP</label>
+    <input type="text" [(ngModel)]="paymentForm.cap" required [ngModelOptions]="{standalone: true}">
+    <label>Comune</label>
+    <input type="text" [(ngModel)]="paymentForm.comune" required [ngModelOptions]="{standalone: true}">
+    <label>Provincia</label>
+    <input type="text" [(ngModel)]="paymentForm.provincia" required [ngModelOptions]="{standalone: true}">
+    <label>Telefono</label>
+    <input type="text" [(ngModel)]="paymentForm.telefono" required [ngModelOptions]="{standalone: true}">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="paymentForm.email" required [ngModelOptions]="{standalone: true}">
+    <!-- Puoi aggiungere altri campi necessari per la spedizione -->
+  </form>
+</div>
+
+  <form *ngIf="selectedPaymentMethod === 'carta'">
+    <!-- Campi per il pagamento con carta -->
+  </form>
+  <form *ngIf="selectedPaymentMethod === 'paypal'">
+    <!-- Campi per il pagamento con PayPal -->
+  </form>
+  <button type="button" (click)="processPayment()">Procedi al acquisto</button>
+</div>
+

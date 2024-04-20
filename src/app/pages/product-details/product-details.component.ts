@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Prodotto } from 'src/app/model/prodotto';
+import { Prodotto } from 'src/app/model/models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
@@ -73,4 +73,9 @@ export class ProductDetailsComponent implements OnInit {
     console.log('Prodotto aggiunto al carrello!');
     this.router.navigate(['/cart-added']);
   }
+
+  redirectToCheckout(prodotto: Prodotto): void {
+    this.router.navigate(['/checkout']);
+  }
+  
 }

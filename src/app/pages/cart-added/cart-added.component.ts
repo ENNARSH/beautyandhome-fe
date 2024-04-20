@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Prodotto } from 'src/app/model/prodotto';
+import { Prodotto } from 'src/app/model/models';
 
 @Component({
   selector: 'app-cart-added',

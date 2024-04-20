@@ -15,12 +15,14 @@
     <p>{{ product.descrizione }}</p>
     <p>Categoria: {{ product.categoria }}</p>
     <p>Prezzo: {{ product.prezzo }}</p>
-    <p>Quantità: {{ product.quantita }}</p>
+    <p>Quantità: {{ product.ml }}</p>
     <div class="buttons">
       <div class="button" (click)="addToCart(product)">
         Aggiungi al carrello
       </div>
-      <div class="button">Acquista ora</div>
+      <div class="button" (click)="redirectToCheckout(product)">
+        Acquista ora
+      </div>
     </div>
   </div>
 </div>

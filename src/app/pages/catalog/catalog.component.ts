@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
-import { Prodotto } from 'src/app/model/prodotto';
+import { Prodotto } from 'src/app/model/models';
 import { environment } from 'src/environments/environment';
 
 interface PreviewImageStyle {
@@ -26,6 +26,7 @@ export class CatalogComponent implements OnInit {
 
   fragranzeMaschiliChecked: boolean = false;
   fragranzeFemminiliChecked: boolean = false;
+  fragranzeUnisexChecked: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -39,16 +40,23 @@ export class CatalogComponent implements OnInit {
     let categoria = '';
     if (
       this.fragranzeMaschiliChecked ||
-      (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked)
+      (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked && !this.fragranzeUnisexChecked)
     ) {
       categorie.push('Fragranze maschili');
     }
     if (
       this.fragranzeFemminiliChecked ||
-      (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked)
-    ) {
+      (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked && !this.fragranzeUnisexChecked)
+    ) { 
       categorie.push('Fragranze femminili');
     }
+    if (this.fragranzeUnisexChecked||
+      (!this.fragranzeMaschiliChecked && !this.fragranzeFemminiliChecked && !this.fragranzeUnisexChecked)
+    ) { 
+      categorie.push('Fragranze unisex');
+    }
+  
+
 
     categorie.forEach((element, index) => {
       if (index == 0) {
@@ -57,9 +65,9 @@ export class CatalogComponent implements OnInit {
         categoria = categoria.concat(',' + element);
       }
     });
-
+  
     const url = `${environment.apiUrl}/api/prodotti/filtered?categoria=${categoria}`;
-
+  
     this.http
       .get<Prodotto[]>(url, { headers })
       .pipe(
@@ -88,6 +96,11 @@ export class CatalogComponent implements OnInit {
     this.fragranzeFemminiliChecked = event.target.checked;
     this.getProdottiFiltered();
     // Use this.fragranzeFemminiliChecked to perform actions based on the checkbox state
+  }
+
+  onFragranzeUnisexChange(event: any) {
+    this.fragranzeUnisexChecked = event.target.checked;
+    this.getProdottiFiltered();
   }
 
   showPreviewImage(imageUrl: string, event: MouseEvent): void {
