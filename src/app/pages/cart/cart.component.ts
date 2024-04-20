@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrdineCompleto, OrdineProdotto, Prodotto } from 'src/app/model/models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Ordine } from 'src/app/model/models';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -10,6 +11,9 @@ import { Ordine } from 'src/app/model/models';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+
+  isCartFormValid: boolean = false;
+  
   cart: Prodotto[] = [];
   selectedPaymentMethod: string | undefined;
   paymentForm: any = {
@@ -28,6 +32,21 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
+  }
+
+  checkFormValidation(){
+    if(!(this.paymentForm?.nome 
+      &&  this.paymentForm?.cognome
+      &&  this.paymentForm?.via
+      &&  this.paymentForm?.cap
+      &&  this.paymentForm?.comune
+      &&  this.paymentForm?.provincia
+      &&  this.paymentForm?.telefono
+    )){
+      this.isCartFormValid = false;
+    } else {
+      this.isCartFormValid = true;
+    }
   }
 
   getCart() {
