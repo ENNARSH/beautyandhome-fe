@@ -113,7 +113,7 @@ export class CartComponent implements OnInit {
       this.http.post<any>(`${environment.apiUrl}/api/ordini`, ordineCompleto).subscribe(
         (res) => {
           console.log('Ordine completato con successo:', res);
-
+      
           // Rimuovi i prodotti dal carrello dopo aver completato l'ordine
           this.cart = [];
           sessionStorage.removeItem('cartItems');
