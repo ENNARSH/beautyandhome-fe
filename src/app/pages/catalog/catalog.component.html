@@ -35,7 +35,8 @@
 <div class="main-container">
 
   <div class="cards">
-    <div class="cards-card" *ngFor="let prodotto of prodotti">
+    <div class="cards-card cursor-pointer" *ngFor="let prodotto of prodotti" 
+    (click)="prodotto.id !== undefined ? onProductSelected(prodotto.id) : null">
       <div class="cards-card-image">
         <img
                 [src]="prodotto.immagine"
@@ -46,8 +47,8 @@
       <div class="cards-card-content">
         <div class="cards-card-content-nome">{{ prodotto.nome }}</div>
         <!-- <div class="cards-card-content-descrizione">{{ prodotto.descrizione }}</div> -->
-        <div class="cards-card-content-prezzo">{{ prodotto.prezzo }}</div>
-        <div class="cards-card-content-ml">{{ prodotto.ml }}</div>
+        <div class="cards-card-content-prezzo">{{ prodotto.prezzo }} €</div>
+        <div class="cards-card-content-ml">{{ prodotto.ml }} ml</div>
         <div class="cards-card-content-categoria">{{ prodotto.categoria }}</div>
       </div>
     </div>

@@ -21,13 +21,13 @@
       <!-- lista prodotti -->
       <ng-container *ngFor="let prodotto of cart; last as last">
         <div class="product-card" [ngClass]="{ 'border-bottom': last }">
-          <img
+          <div class="product-details">
+            <img
             class="image"
             width="200px"
-            height="200px"
+            height="auto"
             src="{{ prodotto.immagine }}"
           />
-          <div class="product-details">
             <div class="title-big">{{ prodotto.nome }}</div>
             <div class="title-medium">{{ prodotto.descrizione }}</div>
             <div class="title-medium bold">{{ prodotto.prezzo }} €</div>

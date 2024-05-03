@@ -2,13 +2,13 @@
   <div class="card white">
     <div class="title">{{ lastItemCartAdded.nome }} aggiunto al carrello!</div>
     <div class="product-card">
-      <img
+      <div class="product-details">
+        <img
         class="image"
         width="200px"
-        height="200px"
+        height="auto"
         src="{{ lastItemCartAdded.immagine }}"
       />
-      <div class="product-details">
         <div class="title-medium">{{ lastItemCartAdded.descrizione }}</div>
         <div class="title-medium bold">{{ lastItemCartAdded.prezzo }} €</div>
         <div class="title-medium">{{ lastItemCartAdded.ml }} ml</div>
