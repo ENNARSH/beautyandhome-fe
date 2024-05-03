@@ -127,7 +127,6 @@
    <form *ngIf="selectedPaymentMethod === 'paypal'">
      <!-- Campi per il pagamento con PayPal -->
    </form>
-   <button class="procedi-button" type="button" [disabled]="!isCartFormValid" (click)="processPayment()">Procedi al acquisto</button>
- </div>
+  </div>
+  <button id="procedi-button" class="procedi-button" type="button" [disabled]="!isCartFormValid" (click)="processPayment()">Procedi al acquisto</button>
 </div>
-

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { OrdineCompleto, OrdineProdotto, Prodotto } from 'src/app/model/models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -27,11 +27,21 @@ export class CartComponent implements OnInit {
     email: ''
   };
 
+  constructor(
+    private http: HttpClient,
+    private el: ElementRef
+  ) {}
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.getCart();
+    this.handleScroll();
+  }
+
+  handleScroll(){
+    const observer = new MutationObserver(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    observer.observe(this.el.nativeElement, { childList: true, subtree: true });
   }
 
   checkFormValidation(){
@@ -121,5 +131,9 @@ export class CartComponent implements OnInit {
         }
       );
     }
+  }
+
+  goToBottom(){
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }
