@@ -51,3 +51,43 @@
 .sidebar-container {
   padding: 6px;
 }
+
+.cards {
+  background-color: #d3aac41c;
+  display: flex;
+  gap: 12px;
+  padding: 12px 12px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  &-card{
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 300px;
+
+
+    &-image{
+
+    }
+
+    &-content{
+      &-nome{
+        font-weight: bold;
+      }
+  
+      &-descrizione{
+  
+      }
+  
+      &-prezzp{
+  
+      }
+  
+      &-categoria{
+  
+      }
+    }
+
+  }
+}

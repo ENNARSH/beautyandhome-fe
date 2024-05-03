@@ -1,38 +1,66 @@
+<div class="sidebar-container">
+  <app-search-bar (searchInput)="searchProducts($event)"></app-search-bar>
+  <div class="filters">
+    <h3>Filtra per categoria</h3>
+    <div class="filter-item">
+      <input
+        type="checkbox"
+        id="fragranzeMaschili"
+        name="fragranzeMaschili"
+        (change)="onFragranzeMaschiliChange($event)"
+      />
+      <label for="fragranzeMaschili">Fragranze Maschili</label>
+    </div>
+    <div class="filter-item">
+      <input
+        type="checkbox"
+        id="fragranzeFemminili"
+        name="fragranzeFemminili"
+        (change)="onFragranzeFemminiliChange($event)"
+      />
+      <label for="fragranzeFemminili">Fragranze Femminili</label>
+    </div>
+    <div class="filter-item">
+      <input
+        type="checkbox"
+        id="fragranzeUnisex"
+        name="fragranzeUnisex"
+        (change)="onFragranzeUnisexChange($event)"
+      />
+      <label for="fragranzeUnisex">Fragranze Unisex</label>
+    </div>
+  </div>
+</div>
+
 <div class="main-container">
-  <div class="sidebar-container">
-    <app-search-bar (searchInput)="searchProducts($event)"></app-search-bar>
-    <div class="filters">
-      <h3>Filtra per categoria</h3>
-      <div class="filter-item">
-        <input
-          type="checkbox"
-          id="fragranzeMaschili"
-          name="fragranzeMaschili"
-          (change)="onFragranzeMaschiliChange($event)"
-        />
-        <label for="fragranzeMaschili">Fragranze Maschili</label>
+
+  <div class="cards">
+    <div class="cards-card" *ngFor="let prodotto of prodotti">
+      <div class="cards-card-image">
+        <img
+                [src]="prodotto.immagine"
+                alt="Immagine prodotto"
+                height="150"
+              />
       </div>
-      <div class="filter-item">
-        <input
-          type="checkbox"
-          id="fragranzeFemminili"
-          name="fragranzeFemminili"
-          (change)="onFragranzeFemminiliChange($event)"
-        />
-        <label for="fragranzeFemminili">Fragranze Femminili</label>
-      </div>
-      <div class="filter-item">
-        <input
-          type="checkbox"
-          id="fragranzeUnisex"
-          name="fragranzeUnisex"
-          (change)="onFragranzeUnisexChange($event)"
-        />
-        <label for="fragranzeUnisex">Fragranze Unisex</label>
+      <div class="cards-card-content">
+        <div class="cards-card-content-nome">{{ prodotto.nome }}</div>
+        <!-- <div class="cards-card-content-descrizione">{{ prodotto.descrizione }}</div> -->
+        <div class="cards-card-content-prezzo">{{ prodotto.prezzo }}</div>
+        <div class="cards-card-content-ml">{{ prodotto.ml }}</div>
+        <div class="cards-card-content-categoria">{{ prodotto.categoria }}</div>
       </div>
     </div>
   </div>
-  <div class="w100">
+
+
+
+
+
+
+
+
+  <!-- <div class="w100">
     <table class="table">
       <thead>
         <tr>
@@ -81,12 +109,11 @@
                   alt="Anteprima immagine"
                   class="preview-img"
                 />
-                <!-- <ngx-img-magnifier [imgSrc]="prodotto.immagine"></ngx-img-magnifier> -->
               </div>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </div>
