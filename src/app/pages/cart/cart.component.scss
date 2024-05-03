@@ -75,3 +75,26 @@
   display: flex;
   gap: 12px;
 }
+
+.payment {
+  padding: 16px 16px 36px 16px;
+
+  &-form{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}
+
+.mr-8 {
+  margin-right: 8px;
+}
+
+.procedi-button{
+  margin-top: 12px;
+  border-radius: 6px;
+  border-color: #92567c;
+  color: #92567c;
+  padding: 7px;
+  font-weight: bold;
+}
