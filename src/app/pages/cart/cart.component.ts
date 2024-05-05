@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { OrdineCompleto, OrdineProdotto, Prodotto } from 'src/app/model/models';
+import { OrdineCompleto, OrdineProdotto, PaypalResponseModel, Prodotto } from 'src/app/model/models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Ordine } from 'src/app/model/models';
@@ -107,7 +107,7 @@ export class CartComponent implements OnInit {
     this.isShowPaypalSection = true;
   }
 
-  processPayment(event?: any): void {
+  processPayment(event?: PaypalResponseModel): void {
     const ordineSpedizione: Ordine = {
       nome: this.paymentForm.nome,
       cognome: this.paymentForm.cognome,
@@ -119,7 +119,7 @@ export class CartComponent implements OnInit {
       email: this.paymentForm.email,
       dataOrdine: new Date(),
       totale: this.getTotalPrice(),
-      metodoPagamento: this.selectedPaymentMethod,
+      metodoPagamento: event?.data?.paymentSource ? event?.data?.paymentSource : this.selectedPaymentMethod,
     };
 
     let ordineDettaglio: OrdineProdotto[] = [];
