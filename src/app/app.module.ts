@@ -16,6 +16,7 @@ import { NgrokInterceptor } from './service/NgrockInterceptor.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartAddedComponent } from './pages/cart-added/cart-added.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { PaypalPaymentComponent } from './pages/paypal-payment/paypal-payment.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     CartComponent,
     CartAddedComponent,
     CheckoutComponent,
+    PaypalPaymentComponent,
   ],
   imports: [
     BrowserModule,

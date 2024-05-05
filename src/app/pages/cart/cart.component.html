@@ -52,15 +52,14 @@
    <label class="mr-8">Seleziona il metodo di pagamento:</label>
    <select [(ngModel)]="selectedPaymentMethod">
      <option value="contrassegno">Contrassegno</option>
-     <option value="carta">Pagamento con carta</option>
-     <option value="paypal">PayPal</option>
+     <option value="paypal">PayPal o Carta</option>
    </select>
  </div>
  <br>
  <!-- Form di pagamento -->
  <div *ngIf="selectedPaymentMethod">
  
-  <form class="payment-form" *ngIf="selectedPaymentMethod === 'contrassegno'">
+  <form class="payment-form">
     <div>
       <div>
         <label>Nome:</label>
@@ -119,14 +118,7 @@
     </div>
      <!-- Puoi aggiungere altri campi necessari per la spedizione -->
    </form>
-
- 
-   <form *ngIf="selectedPaymentMethod === 'carta'">
-     <!-- Campi per il pagamento con carta -->
-   </form>
-   <form *ngIf="selectedPaymentMethod === 'paypal'">
-     <!-- Campi per il pagamento con PayPal -->
-   </form>
   </div>
-  <button id="procedi-button" class="procedi-button" type="button" [disabled]="!isCartFormValid" (click)="processPayment()">Procedi al acquisto</button>
+  <button id="procedi-button" class="procedi-button" type="button" [disabled]="!isCartFormValid" (click)="onClickProcessPayment()">Procedi al acquisto</button>
+  <app-paypal-payment *ngIf="isShowPaypalSection" [prezzo]="getTotalPrice()" (paymentSuccess)="processPayment($event)"></app-paypal-payment>
 </div>
