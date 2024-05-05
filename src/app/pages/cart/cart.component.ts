@@ -108,6 +108,9 @@ export class CartComponent implements OnInit {
   }
 
   processPayment(event?: PaypalResponseModel): void {
+
+    console.log(event);
+
     const ordineSpedizione: Ordine = {
       nome: this.paymentForm.nome,
       cognome: this.paymentForm.cognome,
